@@ -38,7 +38,8 @@ public class Main {
                 System.out.println("Имя студента : " + 
                         s.getName() + ", Возраст : " + 
                         s.getAge() +",  id : " + 
-                        s.getId() + ", role : " /*+ s.getRole()*/);
+                        s.getId() + ", role : " + 
+                        s.getRole());
                 System.out.println("=============================");              
         }       
     }

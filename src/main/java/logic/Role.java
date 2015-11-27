@@ -25,7 +25,6 @@ public class Role extends Model implements Serializable {
 
     public Role() {
     }
-
     
     public String getTitle() {
         return title;
@@ -42,5 +41,10 @@ public class Role extends Model implements Serializable {
     public void setStudents(Set<Student> students) {
         this.students = students;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Role{" + "title=" + title + '}';
+    }
+   
 }

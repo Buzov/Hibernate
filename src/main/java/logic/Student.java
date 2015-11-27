@@ -20,7 +20,7 @@ public class Student extends Model implements Serializable {
     @Column(name = "age")
     private Long age;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
 
@@ -35,7 +35,6 @@ public class Student extends Model implements Serializable {
     public String getName() {
         return name;
     }
-
     
     public Long getAge() {
         return age;
