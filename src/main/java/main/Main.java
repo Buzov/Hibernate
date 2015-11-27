@@ -15,7 +15,7 @@ public class Main {
         Student s1 = new Student();
         Student s2 = new Student();
         Role r1 = new Role();
-        r1.setTitle("Первый");
+        r1.setTitle("Староста");
         Role r2 = new Role();
         r2.setTitle("Второй");
         
@@ -34,8 +34,11 @@ public class Main {
         //Выведем всех студентов из бд
         List<Student> studs = Factory.getInstance().getStudentDAO().getAllStudents();
         System.out.println("========Все студенты=========");
-        for(int i = 0; i < studs.size(); ++i) {
-                System.out.println("Имя студента : " + studs.get(i).getName() + ", Возраст : " + studs.get(i).getAge() +",  id : " + studs.get(i).getId());
+        for(Student s : studs) {
+                System.out.println("Имя студента : " + 
+                        s.getName() + ", Возраст : " + 
+                        s.getAge() +",  id : " + 
+                        s.getId() + ", role : " /*+ s.getRole()*/);
                 System.out.println("=============================");              
         }       
     }

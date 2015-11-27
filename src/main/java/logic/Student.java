@@ -4,23 +4,24 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "student")
-public class Student implements Serializable {
+public class Student extends Model implements Serializable {
 
     private static final long serialVersionUID = 1990501617629593245L;
 
-    private Long id;
+    @Column(name = "name")
     private String name;
+    
+    @Column(name = "age")
     private Long age;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
     private Role role;
 
     public Student() {
@@ -30,27 +31,14 @@ public class Student implements Serializable {
     public Student(Student s) {
         name = s.getName();
     }
-
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id")
-    public Long getId() {
-        return id;
-    }
-
-    @Column(name = "name")
+    
     public String getName() {
         return name;
     }
 
-    @Column(name = "age")
+    
     public Long getAge() {
         return age;
-    }
-
-    public void setId(Long i) {
-        id = i;
     }
 
     public void setName(String s) {
@@ -60,9 +48,7 @@ public class Student implements Serializable {
     public void setAge(Long l) {
         age = l;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", nullable = false)
+    
     public Role getRole() {
         return role;
     }

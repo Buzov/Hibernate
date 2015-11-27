@@ -1,12 +1,12 @@
 package logic;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -14,27 +14,19 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "role")
-public class Role implements Serializable {
+public class Role extends Model implements Serializable {
     private static final long serialVersionUID = 925752359649949792L;
-    private Long id;
+
+    @Column(name = "title")
     private String title;
+    
+    @OneToMany(mappedBy = "role")
+    private Set<Student> students = new HashSet<Student>();
 
     public Role() {
     }
 
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column(name = "title")
+    
     public String getTitle() {
         return title;
     }
@@ -43,5 +35,12 @@ public class Role implements Serializable {
         this.title = title;
     }
     
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
     
 }
